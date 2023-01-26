@@ -45,7 +45,7 @@ public:
 
     int& operator[](int index)
     {
-        if (index < 0 && index > m_length)
+        if (index < 0 || index > m_length)
             throw "bad_range";
         else  return m_data[index];
     }
@@ -120,8 +120,8 @@ public:
     void insertBefore(int value, int index)   //заменяет элемент
     {
         
-        if (index < 0 && index > m_length)
-            throw "bad_range";
+        if (index < 0 || index > m_length)
+            throw "Bad_insertBefore()";
         else {
 
             int* data{ new int[m_length + 1] };
@@ -146,7 +146,7 @@ public:
 
     void remove(int index)   //удаляет элемент
     {
-        if (index < 0 && index > m_length)
+        if (index < 0 || index > m_length)
             throw "bad_range";
 
         
