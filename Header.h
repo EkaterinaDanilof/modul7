@@ -117,33 +117,34 @@ public:
         return *this;
     }
 
-    void insertBefore(int value, int index)
+    void insertBefore(int value, int index)   //заменяет элемент
     {
         
         if (index < 0 && index > m_length)
             throw "bad_range";
+        else {
 
-        
-        int* data{ new int[m_length + 1] };
+            int* data{ new int[m_length + 1] };
 
-        
-        for (int before{ 0 }; before < index; ++before)
-            data[before] = m_data[before];
 
-        
-        data[index] = value;
+            for (int before{ 0 }; before < index; ++before)
+                data[before] = m_data[before];
 
-        
-        for (int after{ index }; after < m_length; ++after)
-            data[after + 1] = m_data[after];
 
-        
-        delete[] m_data;
-        m_data = data;
-        ++m_length;
+            data[index] = value;
+
+
+            for (int after{ index }; after < m_length; ++after)
+                data[after + 1] = m_data[after];
+
+
+            delete[] m_data;
+            m_data = data;
+            ++m_length;
+        }
     }
 
-    void remove(int index)
+    void remove(int index)   //удаляет элемент
     {
         if (index < 0 && index > m_length)
             throw "bad_range";
