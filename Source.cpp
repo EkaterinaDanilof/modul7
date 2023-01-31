@@ -1,11 +1,15 @@
 #include <iostream>
-#include "Header.h"
+#include <exception>
+#include "IntArr.h"
+#include "exception.h"
 
 int main()
 {
+    setlocale(LC_ALL, "");
+
     try
     {
-        IntArray array(10);
+        IntArr array(10);
         
         for (int i{0}; i < 10; ++i)
             array[i] = i + 1;
@@ -35,7 +39,7 @@ int main()
 
 
         {
-            IntArray b{ array };
+            IntArr b{ array };
             b = array;
             b = b;
             array = array;
@@ -51,9 +55,19 @@ int main()
 
     }
 
-    catch (const char* exception)
+    catch (Bad_Range& e)
     {
-        std::cout << exception << std::endl;
+        std::cout << e.what() << std::endl;
+    }
+    
+    catch (Bad_Length& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+     
+    catch (Bad_insertBefore& e)
+    {
+        std::cout << e.what() << std::endl;
     }
     return 0;
 
